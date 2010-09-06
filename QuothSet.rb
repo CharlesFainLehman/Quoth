@@ -12,7 +12,7 @@ class QuothSet
 	end
 	
 	def get(startWord, length)
-		ret = startWord + " "
+		ret = ""
 		word = startWord
 		count = 0
 		
@@ -48,7 +48,6 @@ class QuothSet
 		ret.chop!
 		ret.chop!
 		ret << "}"
-		ret
 	end
 end
 
