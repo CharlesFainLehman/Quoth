@@ -6,11 +6,7 @@ class QuothSet
 		set = text.split
 		set.each_index do |i|
 			if i < set.length - 1 then #only to the second to last word
-				if @corpus.has_key? set[i] then #if the key already exists
-					@corpus[set[i]] << set[i+1] 
-				else
-					@corpus[set[i]] = [set[i+1]]
-				end
+				@corpus.has_key?(set[i]) ? @corpus[set[i]] << set[i+1] : @corpus[set[i]] = [set[i+1]]
 			end
 		end
 	end
@@ -52,7 +48,7 @@ class QuothSet
 		ret.chop!
 		ret.chop!
 		ret << "}"
-		return ret
+		ret
 	end
 end
 
