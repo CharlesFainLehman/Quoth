@@ -1,3 +1,5 @@
+require "time"
+
 class QuothSet
 	@corpus
 	
@@ -37,6 +39,12 @@ class QuothSet
 		end
 	end
 	
+	def write
+		f = File.new("quoths #{Time.new.to_s.gsub(/:/,"")}.txt", "w+")
+		f << to_s
+		f.close
+	end
+	
 	def to_s
 		ret = ""
 		@corpus.each_pair do |key, value|
@@ -50,5 +58,6 @@ class QuothSet
 end
 
 test = QuothSet.new("once upon a midnight dreary while I pondered weak and weary over many a quaint and curious volume of forgotten lore while I nodded nearly napping suddenly there came a tapping as of something gently wrapping wrapping at my chamber door tis some vistor I muttered tapping at my chamber door this it is and nothing more ah distinctly I remember it was in the bleak December and each separate dying ember wrought its ghost upon the floor eagerly I wished the morrow vainly I had sought to borrow from my books surcrease of sorrow sorrow for the lost lenore for the rare and radiant maiden who the angels named lenore nameless here forever more")
-#puts test
-puts test.get("once",15)
+puts test
+puts test.get("I",15)
+test.write
