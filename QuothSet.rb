@@ -57,7 +57,9 @@ class QuothSet
 	end
 end
 
-test = QuothSet.new("once upon a midnight dreary while I pondered weak and weary over many a quaint and curious volume of forgotten lore while I nodded nearly napping suddenly there came a tapping as of something gently wrapping wrapping at my chamber door tis some vistor I muttered tapping at my chamber door this it is and nothing more ah distinctly I remember it was in the bleak December and each separate dying ember wrought its ghost upon the floor eagerly I wished the morrow vainly I had sought to borrow from my books surcrease of sorrow sorrow for the lost lenore for the rare and radiant maiden who the angels named lenore nameless here forever more")
-puts test
-puts test.get("I",15)
-test.write
+f = File.new("test.txt")
+test = QuothSet.new(f.read)
+f.close
+#puts test
+puts test.get("I",ARGV[0].to_i)
+#test.write
