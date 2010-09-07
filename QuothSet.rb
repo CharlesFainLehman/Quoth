@@ -57,9 +57,9 @@ class QuothSet
 	end
 end
 
-f = File.new("test.txt")
+f = File.new("A Christmas Carol.txt")
 test = QuothSet.new(f.read)
 f.close
 #puts test
-puts test.get("I",ARGV[0].to_i)
+puts test.get(ARGV[0],ARGV[1].to_i)
 #test.write
