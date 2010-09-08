@@ -1,13 +1,18 @@
 require "time"
+require "yaml"
 
 class Quoth
 	@corpus
 	
 	def initialize(text)
-		@corpus = {}
-		set = text.split
-		set.each_index do |i|
-			if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
+		if (/[\w|\W]*?\.yaml/ =~ text and File.exists? text) then
+			from_yaml(text)
+		else
+			@corpus = {}
+			set = text.split
+			set.each_index do |i|
+				if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
+			end
 		end
 	end
 	
@@ -37,12 +42,6 @@ class Quoth
 	#	end
 	#end
 	
-	def write
-		f = File.new("quoths #{Time.new.to_s.gsub(/:/,"")}.txt", "w+")
-		f << to_s
-		f.close
-	end
-	
 	def to_s
 		ret = ""
 		@corpus.each_pair do |key, value|
@@ -52,5 +51,20 @@ class Quoth
 			ret << "], "
 		end
 		ret.chop.chop
+	end
+	
+	def to_yaml(fileName="")
+		if fileName != "" then
+			File.open(fileName, 'w') do |f|
+				YAML.dump(@corpus,f)
+			end
+
+		else
+			YAML.dump(@corpus)
+		end
+	end
+	
+	def from_yaml(fileName)
+		@corpus = YAML.load_file fileName
 	end
 end
