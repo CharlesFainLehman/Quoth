@@ -2,6 +2,10 @@ require "time"
 require "yaml"
 
 #A class which constructs semi-realistic sentences based on a markov-chain algorithm.
+#wraps a hash which has keys which are arrays of length 2 containing two words and values which are arrays containing all third words associated with those two words. For example:
+#	["I","am"] => ["Sam", "Ham", "Eggs"]
+#the corpus is constructed from any large block of text- words are organized by sets of two and then have the word following them associated with them. The corpus can also be constructed from a previously generated .yaml file created by the to_yaml() method.
+#When accessing the corpus, the get method looks at a string of two words (for example "I am"), splits it and then uses the resultant array as the key. The value is tacked on to the end of the first string, and the second word in the string ("am") is used alongside the retrieved value as a new key. This exercise is repeated until a certain length has been achieved.
 class Quoth
 	#the main corpus- contains sets of words and their associated next words.
 	attr_reader :corpus

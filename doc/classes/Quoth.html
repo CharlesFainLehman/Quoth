@@ -81,7 +81,25 @@
     <div id="description">
       <p>
 A class which constructs semi-realistic sentences based on a markov-chain
-algorithm.
+algorithm. wraps a hash which has keys which are arrays of length 2
+containing two words and values which are arrays containing all third words
+associated with those two words. For example:
+</p>
+<pre>
+       [&quot;I&quot;,&quot;am&quot;] =&gt; [&quot;Sam&quot;, &quot;Ham&quot;, &quot;Eggs&quot;]
+</pre>
+<p>
+the corpus is constructed from any large block of text- words are organized
+by sets of two and then have the word following them associated with them.
+The corpus can also be constructed from a previously generated .yaml file
+created by the <a href="Quoth.html#M000006">to_yaml</a>() method. When
+accessing the corpus, the <a href="Quoth.html#M000002">get</a> method looks
+at a string of two words (for example &quot;I am&quot;), splits it and then
+uses the resultant array as the key. The value is tacked on to the end of
+the first string, and the second word in the string (&quot;am&quot;) is
+used alongside the retrieved value as a <a
+href="Quoth.html#M000001">new</a> key. This exercise is repeated until a
+certain length has been achieved.
 </p>
 
     </div>
