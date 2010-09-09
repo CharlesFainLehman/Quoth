@@ -2,7 +2,7 @@ require "time"
 require "yaml"
 
 class Quoth
-	@corpus
+	attr_accessor :corpus
 	
 	def initialize(text)
 		@corpus = {}
@@ -38,6 +38,15 @@ class Quoth
 		set = text.split
 		set.each_index do |i|
 			if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
+		end
+	end
+	
+	def merge(oQuoth)
+		return if !oQuoth.is_a?(Quoth)
+		oQuoth.corpus.each_pair do |key, value|
+			for val in value do
+				addSet key[0], key[1], val
+			end
 		end
 	end
 	
