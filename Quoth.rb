@@ -2,7 +2,7 @@ require "time"
 require "yaml"
 
 class Quoth
-	attr_accessor :corpus
+	attr_reader :corpus
 	
 	def initialize(text)
 		@corpus = {}
