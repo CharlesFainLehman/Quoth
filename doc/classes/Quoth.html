@@ -97,9 +97,7 @@ accessing the corpus, the <a href="Quoth.html#M000002">get</a> method looks
 at a string of two words (for example &quot;I am&quot;), splits it and then
 uses the resultant array as the key. The value is tacked on to the end of
 the first string, and the second word in the string (&quot;am&quot;) is
-used alongside the retrieved value as a <a
-href="Quoth.html#M000001">new</a> key. This exercise is repeated until a
-certain length has been achieved.
+used alongside the returned value to retrieve the next word.
 </p>
 
     </div>
@@ -187,7 +185,7 @@ Accepts a .txt, a .yaml or just straight text
         <div class="method-description">
           <p>
 a general method for adding a .txt, a .yaml, straight text or a [key,key]
-=&gt; value to the corpus If adding something besides [key,key] =&gt;
+=&gt; value to the corpus. If adding something besides [key,key] =&gt;
 value, just pass an argument for key1
 </p>
         </div>
