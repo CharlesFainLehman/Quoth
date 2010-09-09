@@ -30,19 +30,15 @@ class Quoth
 		elsif /[\w|\W]*?\.yaml/ =~ key1 then
 			load_yaml key1
 		elsif /[\w|\W]*?\.txt/ =~ key1 then
-			File.open(key1) do |f| addText(f.read) end
-		elsif key.instance_of? String then
-			addText key1
+			File.open(key1) do |f| add(f.read) end
+		elsif key1.instance_of? String then
+			set = key1.split
+			set.each_index do |i|
+				if i < set.length - 2 then add(set[i],set[i+1],set[i+2]) end
+			end
 		end
 	end
-	
-	def addText(text)
-		set = text.split
-		set.each_index do |i|
-			if i < set.length - 2 then add(set[i],set[i+1],set[i+2]) end
-		end
-	end
-	
+		
 	def merge(oQuoth)
 		return if !oQuoth.is_a?(Quoth)
 		oQuoth.corpus.each_pair do |key, value|
