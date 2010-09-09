@@ -5,14 +5,13 @@ class Quoth
 	@corpus
 	
 	def initialize(text)
-		if (/[\w|\W]*?\.yaml/ =~ text and File.exists? text) then
+		@corpus = {}
+		if /[\w|\W]*?\.yaml/ =~ text and File.exists? text then
 			from_yaml(text)
+		elsif /[\w|W]*?\.txt/ =~ text and File.exists? text then
+			File.open(text) do |f| addText(f.read) end
 		else
-			@corpus = {}
-			set = text.split
-			set.each_index do |i|
-				if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
-			end
+			addText(text)
 		end
 	end
 	
@@ -35,12 +34,12 @@ class Quoth
 		@corpus.has_key?([key1,key2]) ? @corpus[[key1,key2]] << value : @corpus[[key1,key2]] = [value]
 	end
 	
-	#def addText(text)
-	#	set = text.split
-	#	set.each_index do |i|
-	#		if i < set.length - 1 then addSet(set[i],set[i+1]) end
-	#	end
-	#end
+	def addText(text)
+		set = text.split
+		set.each_index do |i|
+			if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
+		end
+	end
 	
 	def to_s
 		ret = ""
