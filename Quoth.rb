@@ -6,13 +6,7 @@ class Quoth
 	
 	def initialize(text)
 		@corpus = {}
-		if /[\w|\W]*?\.yaml/ =~ text and File.exists? text then
-			from_yaml(text)
-		elsif /[\w|W]*?\.txt/ =~ text and File.exists? text then
-			File.open(text) do |f| addText(f.read) end
-		else
-			addText(text)
-		end
+		add text
 	end
 	
 	def get(startWord, length)
@@ -30,14 +24,22 @@ class Quoth
 		ret
 	end
 	
-	def addSet(key1, key2, value)
-		@corpus.has_key?([key1,key2]) ? @corpus[[key1,key2]] << value : @corpus[[key1,key2]] = [value]
+	def add(key1,key2="",value="") #key1 can actually be anything, and has multiple uses
+		if !(key2 == "" and value == "") then
+			@corpus.has_key?([key1,key2]) ? @corpus[[key1,key2]] << value : @corpus[[key1,key2]] = [value]
+		elsif /[\w|\W]*?\.yaml/ =~ key1 then
+			load_yaml key1
+		elsif /[\w|\W]*?\.txt/ =~ key1 then
+			File.open(key1) do |f| addText(f.read) end
+		elsif key.instance_of? String then
+			addText key1
+		end
 	end
 	
 	def addText(text)
 		set = text.split
 		set.each_index do |i|
-			if i < set.length - 2 then addSet(set[i],set[i+1],set[i+2]) end
+			if i < set.length - 2 then add(set[i],set[i+1],set[i+2]) end
 		end
 	end
 	
@@ -45,7 +47,7 @@ class Quoth
 		return if !oQuoth.is_a?(Quoth)
 		oQuoth.corpus.each_pair do |key, value|
 			for val in value do
-				addSet key[0], key[1], val
+				add key[0], key[1], val
 			end
 		end
 	end
@@ -66,13 +68,17 @@ class Quoth
 			File.open(fileName, 'w') do |f|
 				YAML.dump(@corpus,f)
 			end
-
 		else
 			YAML.dump(@corpus)
 		end
 	end
 	
-	def from_yaml(fileName)
-		@corpus = YAML.load_file fileName
+	def load_yaml(fileName)
+		temp = YAML.load_file fileName
+		temp.each_pair do |key, value|
+			for val in value do
+				add key[0], key[1], val
+			end
+		end
 	end
 end
