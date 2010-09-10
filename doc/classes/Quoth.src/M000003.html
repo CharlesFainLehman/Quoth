@@ -10,19 +10,16 @@
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Quoth.rb, line 37</span>
+  <pre><span class="ruby-comment cmt"># File Quoth.rb, line 38</span>
         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">key1</span>,<span class="ruby-identifier">key2</span>=<span class="ruby-value str">&quot;&quot;</span>,<span class="ruby-identifier">value</span>=<span class="ruby-value str">&quot;&quot;</span>)
                 <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">key2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-keyword kw">then</span>
-                        <span class="ruby-ivar">@corpus</span>.<span class="ruby-identifier">has_key?</span>([<span class="ruby-identifier">key1</span>,<span class="ruby-identifier">key2</span>]) <span class="ruby-operator">?</span> <span class="ruby-ivar">@corpus</span>[[<span class="ruby-identifier">key1</span>,<span class="ruby-identifier">key2</span>]] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@corpus</span>[[<span class="ruby-identifier">key1</span>,<span class="ruby-identifier">key2</span>]] = [<span class="ruby-identifier">value</span>]
+                        <span class="ruby-identifier">add_set</span> <span class="ruby-identifier">key1</span>,<span class="ruby-identifier">key2</span>,<span class="ruby-identifier">value</span>
                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-regexp re">/[\w|\W]*?\.yaml/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">key1</span> <span class="ruby-keyword kw">then</span>
-                        <span class="ruby-identifier">load_yaml</span> <span class="ruby-identifier">key1</span>
+                        <span class="ruby-identifier">add_yaml</span> <span class="ruby-identifier">key1</span>
                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-regexp re">/[\w|\W]*?\.txt/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">key1</span> <span class="ruby-keyword kw">then</span>
-                        <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">key1</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>) <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-identifier">add_txt</span> <span class="ruby-identifier">key1</span>
                 <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key1</span>.<span class="ruby-identifier">instance_of?</span> <span class="ruby-constant">String</span> <span class="ruby-keyword kw">then</span>
-                        <span class="ruby-identifier">set</span> = <span class="ruby-identifier">key1</span>.<span class="ruby-identifier">split</span>
-                        <span class="ruby-identifier">set</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
-                                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">set</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">2</span> <span class="ruby-keyword kw">then</span> <span class="ruby-identifier">add</span>(<span class="ruby-identifier">set</span>[<span class="ruby-identifier">i</span>],<span class="ruby-identifier">set</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>],<span class="ruby-identifier">set</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">2</span>]) <span class="ruby-keyword kw">end</span>
-                        <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-identifier">add_str</span> <span class="ruby-identifier">key1</span>
                 <span class="ruby-keyword kw">end</span>
         <span class="ruby-keyword kw">end</span></pre>
 </body>

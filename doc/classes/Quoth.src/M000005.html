@@ -5,21 +5,14 @@
 
 <html>
 <head>
-  <title>to_s (Quoth)</title>
+  <title>add_txt (Quoth)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File Quoth.rb, line 63</span>
-        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_s</span>
-                <span class="ruby-identifier">ret</span> = <span class="ruby-value str">&quot;&quot;</span>
-                <span class="ruby-ivar">@corpus</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
-                        <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;[#{key[0].to_s},#{key[1].to_s}] =&gt; [&quot;</span>
-                        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">word</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">value</span> <span class="ruby-keyword kw">do</span> <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">word</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;,&quot;</span> <span class="ruby-keyword kw">end</span>
-                        <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">chop!</span>
-                        <span class="ruby-identifier">ret</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;], &quot;</span>
-                <span class="ruby-keyword kw">end</span>
-                <span class="ruby-identifier">ret</span>.<span class="ruby-identifier">chop</span>.<span class="ruby-identifier">chop</span>
+  <pre><span class="ruby-comment cmt"># File Quoth.rb, line 56</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_txt</span>(<span class="ruby-identifier">file</span>)
+                <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add_str</span>(<span class="ruby-identifier">f</span>.<span class="ruby-identifier">read</span>) <span class="ruby-keyword kw">end</span>
         <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

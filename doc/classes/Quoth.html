@@ -92,7 +92,7 @@ associated with those two words. For example:
 the corpus is constructed from any large block of text- words are organized
 by sets of two and then have the word following them associated with them.
 The corpus can also be constructed from a previously generated .yaml file
-created by the <a href="Quoth.html#M000006">to_yaml</a>() method. When
+created by the <a href="Quoth.html#M000009">to_yaml</a>() method. When
 accessing the corpus, the <a href="Quoth.html#M000002">get</a> method looks
 at a string of two words (for example &quot;I am&quot;), splits it and then
 uses the resultant array as the key. The value is tacked on to the end of
@@ -110,12 +110,15 @@ used alongside the returned value to retrieve the next word.
 
       <div class="name-list">
       <a href="#M000003">add</a>&nbsp;&nbsp;
+      <a href="#M000004">add_set</a>&nbsp;&nbsp;
+      <a href="#M000006">add_str</a>&nbsp;&nbsp;
+      <a href="#M000005">add_txt</a>&nbsp;&nbsp;
+      <a href="#M000010">add_yaml</a>&nbsp;&nbsp;
       <a href="#M000002">get</a>&nbsp;&nbsp;
-      <a href="#M000007">load_yaml</a>&nbsp;&nbsp;
-      <a href="#M000004">merge</a>&nbsp;&nbsp;
+      <a href="#M000007">merge</a>&nbsp;&nbsp;
       <a href="#M000001">new</a>&nbsp;&nbsp;
-      <a href="#M000005">to_s</a>&nbsp;&nbsp;
-      <a href="#M000006">to_yaml</a>&nbsp;&nbsp;
+      <a href="#M000008">to_s</a>&nbsp;&nbsp;
+      <a href="#M000009">to_yaml</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -139,7 +142,7 @@ used alongside the returned value to retrieve the next word.
           <td class="context-item-name">corpus</td>
           <td class="context-item-value">&nbsp;[R]&nbsp;</td>
           <td class="context-item-desc">
-the main corpus- contains sets of words and their associated next words.
+The main corpus- contains sets of words and their associated next words.
 
 </td>
         </tr>
@@ -184,9 +187,77 @@ Accepts a .txt, a .yaml or just straight text
       
         <div class="method-description">
           <p>
-a general method for adding a .txt, a .yaml, straight text or a [key,key]
+A general method for adding a .txt, a .yaml, straight text or a [key,key]
 =&gt; value to the corpus. If adding something besides [key,key] =&gt;
-value, just pass an argument for key1
+value, just pass an argument for key1. hould be used in most cases.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Quoth.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000004.html');return false;">
+          <span class="method-name">add_set</span><span class="method-args">(key1, key2, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a single set to the corpus- [key, key] =&gt; value.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Quoth.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000006.html');return false;">
+          <span class="method-name">add_str</span><span class="method-args">(text)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a string to the corpus.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Quoth.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000005.html');return false;">
+          <span class="method-name">add_txt</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds the contents of a text file to the corpus.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Quoth.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000010.html');return false;">
+          <span class="method-name">add_yaml</span><span class="method-args">(fileName)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Loads from yaml into the corpus.
 </p>
         </div>
       </div>
@@ -203,7 +274,7 @@ value, just pass an argument for key1
       
         <div class="method-description">
           <p>
-returns a sentence beginning with startWord and of length length + 1
+Returns a sentence beginning with startWord and of length length + 1.
 </p>
         </div>
       </div>
@@ -214,64 +285,47 @@ returns a sentence beginning with startWord and of length length + 1
         <div class="method-heading">
           <a href="Quoth.src/M000007.html" target="Code" class="method-signature"
             onclick="popupCode('Quoth.src/M000007.html');return false;">
-          <span class="method-name">load_yaml</span><span class="method-args">(fileName)</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p>
-loads from yaml into the corpus
-</p>
-        </div>
-      </div>
-
-      <div id="method-M000004" class="method-detail">
-        <a name="M000004"></a>
-
-        <div class="method-heading">
-          <a href="Quoth.src/M000004.html" target="Code" class="method-signature"
-            onclick="popupCode('Quoth.src/M000004.html');return false;">
           <span class="method-name">merge</span><span class="method-args">(oQuoth)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-merges the current corpus with the corpus of the other quoth
+Merges the current corpus with the corpus of the other quoth.
 </p>
         </div>
       </div>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
 
         <div class="method-heading">
-          <a href="Quoth.src/M000005.html" target="Code" class="method-signature"
-            onclick="popupCode('Quoth.src/M000005.html');return false;">
+          <a href="Quoth.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000008.html');return false;">
           <span class="method-name">to_s</span><span class="method-args">()</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-converts the corpus to a string representation for printing
+Converts the corpus to a string representation for printing.
 </p>
         </div>
       </div>
 
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="Quoth.src/M000006.html" target="Code" class="method-signature"
-            onclick="popupCode('Quoth.src/M000006.html');return false;">
+          <a href="Quoth.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('Quoth.src/M000009.html');return false;">
           <span class="method-name">to_yaml</span><span class="method-args">(fileName=&quot;&quot;)</span>
           </a>
         </div>
       
         <div class="method-description">
           <p>
-Writes the corpus to yaml- may take a while for large corpuses
+Writes the corpus to yaml- may take a while for large corpuses.
 </p>
         </div>
       </div>
