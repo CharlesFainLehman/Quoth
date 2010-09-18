@@ -59,13 +59,9 @@ class Quoth
 	
 	#Adds a string to the corpus.
 	def add_str(text)
-		begin
-			set = text.split
-			set.each_index do |i|
-				if i < set.length - 2 then add_set set[i],set[i+1],set[i+2] end
-			end
-		rescue ArgumentError => e
-			
+		set = text.split
+		set.each_index do |i|
+			if i < set.length - 2 then add_set set[i],set[i+1],set[i+2] end
 		end
 	end 
 		
